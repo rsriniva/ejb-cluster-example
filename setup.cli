@@ -1,0 +1,35 @@
+
+if (outcome != success) of /host=master/server-config=server-one:read-resource
+    /host=master/server-config=server-one:stop(blocking=true)
+    /host=master/server-config=server-two:stop(blocking=true)
+    /host=master/server-config=server-one:remove
+    /host=master/server-config=server-two:remove
+    /host=master/server-config=server-three:remove
+end-if
+
+# remove the default server configuration and server-groups
+
+if (outcome != success) of /server-group=main-server-group:read-resource
+    /server-group=main-server-group:remove
+end-if
+
+if (outcome != success) of /server-group=other-server-group:read-resource
+    /server-group=other-server-group:remove
+end-if
+
+batch
+/server-group=group-a:add(profile=ha,socket-binding-group=ha-sockets)
+/server-group=group-a/jvm=default:add()
+/server-group=group-b:add(profile=ha,socket-binding-group=ha-sockets)
+/server-group=group-b/jvm=default:add()
+
+/host=master/server-config=serv-a:add(auto-start=true, group=group-a, socket-binding-port-offset=0)
+/host=master/server-config=serv-b:add(auto-start=true, group=group-b, socket-binding-port-offset=100)
+
+run-batch
+
+
+:restart-servers
+
+/host=master/server-config=serv-a:start
+/host=master/server-config=serv-b:start
