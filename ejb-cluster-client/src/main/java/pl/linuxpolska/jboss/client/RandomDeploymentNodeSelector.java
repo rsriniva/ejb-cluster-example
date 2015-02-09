@@ -5,6 +5,7 @@ package pl.linuxpolska.jboss.client;
 
 import java.util.Arrays;
 import java.util.Random;
+import java.util.logging.Logger;
 
 import org.jboss.ejb.client.DeploymentNodeSelector;
 
@@ -13,6 +14,11 @@ import org.jboss.ejb.client.DeploymentNodeSelector;
  *
  */
 public class RandomDeploymentNodeSelector implements DeploymentNodeSelector {
+	/**
+	 * LOG
+	 */
+	private static final Logger LOG = Logger.getLogger(MainClient.class.getCanonicalName());
+	
 	@Override
 	public String selectNode(String[] eligibleNodes, String appName,
 			String moduleName, String distinctName) {
@@ -24,8 +30,7 @@ public class RandomDeploymentNodeSelector implements DeploymentNodeSelector {
 		final int randomSelection = random.nextInt(eligibleNodes.length);
 		String node = eligibleNodes[randomSelection];
 		
-		System.out.println("Servers:"+Arrays.toString(eligibleNodes)+" selected:"+node);
-		
+		LOG.info("Servers:"+Arrays.toString(eligibleNodes)+" selected:"+node);
 		return node;
 	}
 }
