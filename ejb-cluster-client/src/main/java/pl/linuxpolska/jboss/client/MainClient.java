@@ -28,7 +28,7 @@ public class MainClient {
 	/**
 	 * 
 	 */
-	private static final int LOOPS = 100;
+	private static final int LOOPS = 1000;
 	/**
 	 * Context
 	 */
