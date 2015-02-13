@@ -19,4 +19,4 @@ In the console logs, you should see:
 
 __JBAS010238: Number of cluster members: 2__
 
-Run __java -jar ejb-cluster-client-jar-with-dependencies.jar__ to test your configuration. 
+Run __java -jar ejb-client-jar-with-dependencies.jar__ to test your configuration. 

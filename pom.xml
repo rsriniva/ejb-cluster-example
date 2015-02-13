@@ -117,7 +117,8 @@
 	
 	<modules>
 		<module>ejb-cluster</module>
-		<module>ejb-cluster-client</module>
+		<module>ejb-client</module>
+		<module>ejb-cluster-dist</module>
 	</modules>
 	
 </project>

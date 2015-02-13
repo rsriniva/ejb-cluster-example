@@ -6,7 +6,7 @@
 		<artifactId>ejb-cluster-example</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<artifactId>ejb-cluster-client</artifactId>
+	<artifactId>ejb-client</artifactId>
 	<name>EJB Cluster Example :: EJB Client</name>
 
 	<properties>
