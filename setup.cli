@@ -1,23 +1,16 @@
 
-if (outcome != success) of /host=master/server-config=server-one:read-resource
-    /host=master/server-config=server-one:stop(blocking=true)
-    /host=master/server-config=server-two:stop(blocking=true)
-    /host=master/server-config=server-one:remove
-    /host=master/server-config=server-two:remove
-    /host=master/server-config=server-three:remove
-end-if
-
-# remove the default server configuration and server-groups
-
-if (outcome != success) of /server-group=main-server-group:read-resource
-    /server-group=main-server-group:remove
-end-if
-
-if (outcome != success) of /server-group=other-server-group:read-resource
-    /server-group=other-server-group:remove
-end-if
-
 batch
+
+/host=master/server-config=server-one:stop(blocking=true)
+/host=master/server-config=server-two:stop(blocking=true)
+
+/host=master/server-config=server-one:remove
+/host=master/server-config=server-two:remove
+/host=master/server-config=server-three:remove
+
+/server-group=main-server-group:remove
+/server-group=other-server-group:remove
+
 /server-group=group-a:add(profile=ha,socket-binding-group=ha-sockets)
 /server-group=group-a/jvm=default:add()
 /server-group=group-b:add(profile=ha,socket-binding-group=ha-sockets)
